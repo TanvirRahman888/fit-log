@@ -1,23 +1,28 @@
 import { iWorkout } from "@/types/workoutType";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import React from "react";
 
 const WorkoutsDetailsPage = async ({
   params,
 }: {
-  params: Promise<{ params: string }>;
+  params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
 
   const getData = async (): Promise<iWorkout> => {
     const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
+    if (!res.ok) {
+      notFound();
+    }
     const data = await res.json();
-    console.log(data);
+    if (!data || !data.id) {
+      notFound();
+    }
     return data;
   };
 
   const workout = await getData();
-  console.log("WorkoutsDetailsPage : ",workout);
 
   return (
     <main className="min-h-screen bg-[#0b0d10] px-4 py-8 text-white sm:px-6 lg:px-10">
@@ -144,7 +149,6 @@ const WorkoutsDetailsPage = async ({
         </div>
       </div>
     </main>
-    
   );
 };
 
