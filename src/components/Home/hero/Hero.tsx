@@ -12,10 +12,9 @@ const Hero = () => {
           width={400}
           height={600}
         />
-        <div className="lg:w-1/2">
+        <div className="lg:w-1/2 text-center md:text-left">
           <h1 className="text-5xl font-bold">
-            TRAIN WITH INTENT. LOG <br />
-            EVERY SET.
+            TRAIN WITH INTENT. LOG EVERY SET.
           </h1>
           <p className="py-6 text-[#9CA3AF]">
             FitLog is a dark, no-nonsense gym companion: pick a lift, lock it into today's plan, and watch the week's work add up.
