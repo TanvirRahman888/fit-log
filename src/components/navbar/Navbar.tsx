@@ -4,16 +4,7 @@ import React from "react";
 import WorkoutMenu from "./WorkoutMenu";
 
 const Navbar = () => {
-  const navLinks = (
-    <>
-      <li>
-        <Link href={"/workouts"}>Workouts</Link>
-      </li>
-      <li>
-        <Link href={"/myplan"}>My Plan</Link>
-      </li>
-    </>
-  );
+
   return (
     <div className="shadow-sm">
       <div className="navbar container mx-auto">
