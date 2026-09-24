@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import WorkoutMenu from "./WorkoutMenu";
+import NavEndButtons from "./NavEndButtons";
 
 const Navbar = () => {
 
@@ -51,21 +51,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <div className="px-6 py-5">
-            <div className="flex items-center gap-8">
-              <button className="flex items-center gap-2 text-sm font-medium text-gray-300">
-                Plan
-                <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-[#b7ff00] px-1.5 text-xs font-bold text-black">
-                  0
-                </span>
-              </button>
-
-              <button className="flex items-center gap-2 text-sm font-medium text-gray-400">
-                Saved
-                <span className="flex h-6 min-w-6 items-center justify-center rounded-full border border-gray-600 px-1.5 text-xs text-gray-300">
-                  0
-                </span>
-              </button>
-            </div>
+            <NavEndButtons/>
           </div>
         </div>
       </div>

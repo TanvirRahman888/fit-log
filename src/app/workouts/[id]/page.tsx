@@ -1,3 +1,5 @@
+import AddToPlan from "@/components/workouts/AddToPlan";
+import SavePlan from "@/components/workouts/SavePlan";
 import { iWorkout } from "@/types/workoutType";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -138,13 +140,9 @@ const WorkoutsDetailsPage = async ({
 
           {/* Buttons */}
           <div className="mt-8 flex flex-wrap gap-3">
-            <button className="rounded-xl bg-[#b7ff00] px-6 py-3 text-sm font-semibold text-black transition hover:bg-[#a6e900]">
-              Add to today&apos;s plan
-            </button>
+            <AddToPlan workout={workout}/>
 
-            <button className="rounded-xl border border-gray-700 px-6 py-3 text-sm text-gray-300 transition hover:bg-white/5 hover:text-white">
-              Save for later
-            </button>
+            <SavePlan workout={workout}/>
           </div>
         </div>
       </div>
