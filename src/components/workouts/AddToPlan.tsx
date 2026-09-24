@@ -28,11 +28,20 @@ const AddToPlan = ({ workout }: { workout: iWorkout }) => {
 
   return (
     <button
-      className="rounded-xl bg-[#b7ff00] px-6 py-3 text-sm font-semibold text-black transition hover:bg-[#a7e900c6]"
-      onClick={handleAddToPlan}
-    >
-      Add to today&apos;s plan
-    </button>
+  disabled={plan.length >= 5}
+  onClick={handleAddToPlan}
+  className={`rounded-xl px-6 py-3 text-sm font-semibold transition
+    ${
+      plan.length >= 5
+        ? "cursor-not-allowed bg-red-500"
+        : "bg-[#b7ff00] text-black hover:bg-[#a7e900c6]"
+    }
+  `}
+>
+  {plan.length >= 5
+    ? "Plan is full"
+    : "Add to today's plan"}
+</button>
   );
 };
 
