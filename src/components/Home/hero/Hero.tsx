@@ -20,7 +20,7 @@ const Hero = () => {
           <p className="py-6 text-[#9CA3AF]">
             FitLog is a dark, no-nonsense gym companion: pick a lift, lock it into today's plan, and watch the week's work add up.
           </p>
-          <Link href={"/workouts"} className="btn bg-[#9AE600] hover:bg-[#99e600b7]">BROWSE WORKOUTS</Link>
+          <Link href="#library" className="btn bg-[#9AE600] hover:bg-[#99e600b7]">BROWSE WORKOUTS</Link>
         </div>
       </div>
     </div>
