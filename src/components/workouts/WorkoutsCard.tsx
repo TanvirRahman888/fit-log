@@ -22,9 +22,9 @@ const WorkoutsCard = ({ workout }: { workout: iWorkout }) => {
         <div className="p-6">
           {/* Muscle Groups */}
           <div className="mb-4 flex gap-2">
-            {workout.muscleGroups.map((muscle) => (
+            {workout.muscleGroups.map((muscle, idx) => (
               <span
-                key={muscle}
+                key={idx}
                 className="rounded-full bg-[#b7ff00] px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-black"
               >
                 {muscle}

@@ -29,15 +29,14 @@ const WorkoutsDetailsPage = async ({
   return (
     <main className="min-h-screen bg-[#0b0d10] px-4 py-8 text-white sm:px-6 lg:px-10">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2">
-        {/* Left Image */}
-        <div className="relative overflow-hidden rounded-2xl border border-gray-800 ">
+        <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl border border-gray-800 sm:aspect-16/10 lg:aspect-4/5">
           <Image
             src={workout.image}
             alt={workout.name}
             fill
             priority
             className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 50vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
           />
         </div>
 
@@ -140,9 +139,9 @@ const WorkoutsDetailsPage = async ({
 
           {/* Buttons */}
           <div className="mt-8 flex flex-wrap gap-3">
-            <AddToPlan workout={workout}/>
+            <AddToPlan workout={workout} />
 
-            <SavePlan workout={workout}/>
+            <SavePlan workout={workout} />
           </div>
         </div>
       </div>
