@@ -2,6 +2,7 @@
 import { WorkoutContext } from "@/context/WorkoutContext";
 import { iWorkout } from "@/types/workoutType";
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 
 const AddToPlan = ({ workout }: { workout: iWorkout }) => {
   const context = useContext(WorkoutContext);
@@ -13,16 +14,16 @@ const AddToPlan = ({ workout }: { workout: iWorkout }) => {
   const { plan, setPlan } = context;
 
   const handleAddToPlan = () => {
-    alert("Clicked");
+    
     const isAlreadyAdded = plan.some((item) => item.id === workout.id);
 
     if (isAlreadyAdded) {
-      alert("Already Added");
+      toast.error('Already Added');
       return;
     }
 
     setPlan([...plan, workout]);
-    alert(`Added : ${workout.name}`);
+    toast.success(`Added : ${workout.name}`);
     console.log(plan);
   };
 

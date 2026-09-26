@@ -9,6 +9,7 @@ import SortWorkouts from "./SortWorkouts";
 import EmptyPlan from "./EmptyPlan";
 import MyPlanCard from "./MyPlanCard";
 import SearchWorkouts from "./SearchWorkouts";
+import toast from "react-hot-toast";
 
 type PlanTab = "plan" | "saved";
 
@@ -30,49 +31,22 @@ const MyPlanClient = () => {
     return null;
   }
 
-  const {
-    plan,
-    setPlan,
-    savePlan,
-    setSavePlan,
-  } = context;
-
-  // --------------------------------
-  // Current tab workouts
-  // --------------------------------
-  const currentWorkouts =
-    activeTab === "plan" ? plan : savePlan;
-
-  // --------------------------------
-  // Current tab search value
-  // --------------------------------
+  const { plan, setPlan, savePlan, setSavePlan } = context;
+  const currentWorkouts = activeTab === "plan" ? plan : savePlan;
   const currentSearch = search[activeTab];
 
-  // --------------------------------
-  // Search
-  // Empty search = show all workouts
-  // --------------------------------
   const filteredWorkouts =
     currentSearch.trim() === ""
       ? currentWorkouts
       : currentWorkouts.filter((workout) => {
-          const searchValue =
-            currentSearch.trim().toLowerCase();
+          const searchValue = currentSearch.trim().toLowerCase();
 
           return (
-            workout.name
-              .toLowerCase()
-              .includes(searchValue) ||
-            workout.equipment
-              .toLowerCase()
-              .includes(searchValue) ||
-            workout.difficulty
-              .toLowerCase()
-              .includes(searchValue) ||
+            workout.name.toLowerCase().includes(searchValue) ||
+            workout.equipment.toLowerCase().includes(searchValue) ||
+            workout.difficulty.toLowerCase().includes(searchValue) ||
             workout.muscleGroups.some((muscle) =>
-              muscle
-                .toLowerCase()
-                .includes(searchValue)
+              muscle.toLowerCase().includes(searchValue),
             )
           );
         });
@@ -84,86 +58,60 @@ const MyPlanClient = () => {
     }));
   };
 
-  // --------------------------------
-  // Summary
-  // Summary uses ALL workouts
-  // from the currently active tab
-  // --------------------------------
   const totalExercises = currentWorkouts.length;
 
   const totalMinutes = currentWorkouts.reduce(
-    (total, workout) =>
-      total + workout.duration,
-    0
+    (total, workout) => total + workout.duration,
+    0,
   );
 
   const totalCalories = currentWorkouts.reduce(
-    (total, workout) =>
-      total + workout.caloriesBurned,
-    0
+    (total, workout) => total + workout.caloriesBurned,
+    0,
   );
 
-  // --------------------------------
   // Sort filtered workouts
-  // --------------------------------
-  const sortedWorkouts =
-    [...filteredWorkouts].sort((a, b) => {
-      if (sortBy === "duration") {
-        return a.duration - b.duration;
-      }
+  const sortedWorkouts = [...filteredWorkouts].sort((a, b) => {
+    if (sortBy === "duration") {
+      return a.duration - b.duration;
+    }
 
-      if (sortBy === "calories") {
-        return (
-          a.caloriesBurned -
-          b.caloriesBurned
-        );
-      }
+    if (sortBy === "calories") {
+      return a.caloriesBurned - b.caloriesBurned;
+    }
 
-      if (sortBy === "rating") {
-        return b.rating - a.rating;
-      }
+    if (sortBy === "rating") {
+      return b.rating - a.rating;
+    }
 
-      return 0;
-    });
+    return 0;
+  });
 
-  // --------------------------------
   // Remove from Today's Plan
-  // --------------------------------
   const handleRemovePlan = (id: number) => {
-    const updatedPlan = plan.filter(
-      (workout) => workout.id !== id
-    );
+    const updatedPlan = plan.filter((workout) => workout.id !== id);
 
     setPlan(updatedPlan);
-
-    alert("Workout removed");
+    toast.success("Workout removed");
   };
 
-  // --------------------------------
   // Mark as Done
-  // Same as remove from plan
-  // --------------------------------
   const handleMarkDone = (id: number) => {
-    const updatedPlan = plan.filter(
-      (workout) => workout.id !== id
-    );
+    const updatedPlan = plan.filter((workout) => workout.id !== id);
 
     setPlan(updatedPlan);
 
-    alert("Workout marked as done");
+    toast("Good Job!", {
+      icon: "👏",
+    });
   };
 
-  // --------------------------------
   // Remove Saved
-  // --------------------------------
   const handleRemoveSaved = (id: number) => {
-    const updatedSaved = savePlan.filter(
-      (workout) => workout.id !== id
-    );
+    const updatedSaved = savePlan.filter((workout) => workout.id !== id);
 
     setSavePlan(updatedSaved);
-
-    alert("Saved workout removed");
+    toast.success("Saved workout removed");
   };
 
   return (
@@ -178,24 +126,15 @@ const MyPlanClient = () => {
       {/* Tabs + Search + Sort */}
       <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-center">
         {/* Tabs */}
-        <PlanTabs
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-        />
+        <PlanTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
         {/* Search */}
         <div className="flex-1 lg:px-8">
-          <SearchWorkouts
-            value={currentSearch}
-            onChange={handleSearch}
-          />
+          <SearchWorkouts value={currentSearch} onChange={handleSearch} />
         </div>
 
         {/* Sort */}
-        <SortWorkouts
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-        />
+        <SortWorkouts sortBy={sortBy} setSortBy={setSortBy} />
       </div>
 
       {/* Workout List */}
@@ -227,14 +166,10 @@ const MyPlanClient = () => {
               <MyPlanCard
                 key={workout.id}
                 workout={workout}
-                showDoneButton={
-                  activeTab === "plan"
-                }
+                showDoneButton={activeTab === "plan"}
                 onDone={handleMarkDone}
                 onRemove={
-                  activeTab === "plan"
-                    ? handleRemovePlan
-                    : handleRemoveSaved
+                  activeTab === "plan" ? handleRemovePlan : handleRemoveSaved
                 }
               />
             ))}
