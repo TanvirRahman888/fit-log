@@ -5,7 +5,7 @@ import Workouts from "@/components/Home/workouts/Workouts";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="mt-20">
       <Hero/>
       <Workouts/>
       

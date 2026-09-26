@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="mx-auto my-8 w-[calc(100%-2rem)] max-w-7xl overflow-hidden rounded-xl bg-slate-900 sm:my-12">
+    <section className="mx-auto my-8 w-[calc(100%-2rem)] overflow-hidden rounded-xl bg-slate-900 sm:my-12">
       <div className="flex w-full flex-col items-center gap-8 px-5 py-8 sm:px-8 sm:py-10 lg:flex-row-reverse lg:justify-between lg:px-14 lg:py-12">
         
         {/* Hero Image */}

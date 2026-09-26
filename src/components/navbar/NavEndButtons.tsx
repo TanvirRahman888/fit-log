@@ -16,7 +16,7 @@ const NavEndButtons = () => {
       <Link href={"/myplan"} >
         <li className="flex items-center gap-2 text-sm font-medium text-gray-300 hover:text-white hover:font-bold">
           Plan
-          <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-[#b7ff00] px-1.5 text-xs font-bold text-black">
+          <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-[#ccff00] px-1.5 text-xs font-bold text-black">
             {plan.length}
           </span>
         </li>

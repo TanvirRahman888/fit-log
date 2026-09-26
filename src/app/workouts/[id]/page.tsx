@@ -27,7 +27,7 @@ const WorkoutsDetailsPage = async ({
   const workout = await getData();
 
   return (
-    <main className="min-h-screen bg-[#0b0d10] px-4 py-8 text-white sm:px-6 lg:px-10">
+    <main className="min-h-screen bg-[#0b0d10] px-4 py-8 text-white sm:px-6 lg:px-10 mt-20">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2">
         <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl border border-gray-800 sm:aspect-16/10 lg:aspect-4/5">
           <Image
